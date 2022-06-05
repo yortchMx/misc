@@ -13,6 +13,10 @@ set showcmd             " show (partial) command in status line
 set redrawtime=4000  " needed for big files like clucontrol 
 set incsearch!      " dont do incremenatl search
 
+" dont start with replace
+set t_u7= 
+set ambw=double
+
 " Remaps
 
 
