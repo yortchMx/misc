@@ -1,44 +1,20 @@
 set nocompatible              " required
 filetype indent on                  " required
 
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-
-" let Vundle manage Vundle, required
-Plugin 'gmarik/Vundle.vim'
-
-" GO
-"Plugin 'fatih/vim-go'
-
-" Auto indent
-" Plugin 'vim-scripts/indentpython.vim'
-
-" Flake 8
-"Plugin 'nvie/vim-flake8'
-
-" Tree dir
-" Plugin 'scrooloose/nerdtree'
-" Plugin 'jistr/vim-nerdtree-tabs'
-
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-" filetype plugin indent on    " required
-
-
 " General settings
 set number
 set visualbell
 set ignorecase
-syntax off
+syntax on
 set hlsearch
 set cursorline
 set ruler                           " show line and column number
 set showcmd             " show (partial) command in status line
+set redrawtime=4000  " needed for big files like clucontrol 
+set incsearch!      " dont do incremenatl search
 
 " Remaps
-nmap oo o<Esc>
-nmap OO O<Esc>
+
 
 " Force me to not use keys
 noremap <Up> <NOP>
@@ -47,6 +23,8 @@ noremap <Left> <NOP>
 noremap <Right> <NOP>
 noremap <End> <NOP>
 noremap <Home> <NOP>
+noremap <C-Left> <NOP>
+nmap <C-Left> <NOP>
 
 " Yank eol
 nnoremap Y y$
@@ -96,18 +74,15 @@ set expandtab           " enter spaces when tab is pressed
 set tabstop=4           " use 4 spaces to represent tab
 set softtabstop=4
 set shiftwidth=4        " number of spaces to use for auto indent
+set softtabstop=4       " make 4 spaces on backspace
+set backspace=indent,eol,start  "make the backspace indent behave
 set autoindent          " copy indent from current line when starting a new
 
-"  line
-"
-"  " make backspaces more powerfull
-
-set backspace=indent,eol,start
-"
-
-command -nargs=+ Search /def <args>
-command -nargs=+ Count %s/<args>/&/n
-command -nargs=+ Grep !grep -n "<args>" %:p | less
+" Commands
+command! -nargs=+ Search /def <args>
+command! -nargs=+ Count %s/<args>/&/n
+command! -nargs=+ Grep !grep -n "<args>" %:p | less
+command! -nargs=0 Debug <startinsert>import\spdb;pdb.set_trace()<Esc>
 
 "
 " Vimdiff custom
